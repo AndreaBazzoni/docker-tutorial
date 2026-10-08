@@ -1,0 +1,119 @@
+* {
+  box-sizing: border-box;
+}
+
+
+/* Hide the edit container by default */
+.container-edit {
+  display: none;
+}
+
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 8px;
+}
+
+
+.container,
+.container-edit {
+  max-width: 512px;
+  margin: 16px auto;
+  padding: 16px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.container-info,
+.container-edit-info {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  height: 40px;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  align-items: center;
+}
+
+
+h4 {
+  margin: 2px 0;
+  font-size: 1em;
+  min-width: 0;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+
+
+input {
+  margin: 2px 0;
+  font-size: 0.875em;
+  padding: 4px 8px;
+  width: 100%;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+
+/* -- Style for buttons -- */
+.button {
+  display: block;
+  margin: 16px auto 0;
+  padding: 8px 16px;
+  font-size: 1em;
+  width: 160px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s, transform 0.1s;
+}
+
+.button:hover {
+  background-color: #0056b3;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.button:focus-visible {
+  outline: 3px solid #99c9ff;
+  outline-offset: 2px;
+}
+/* -- End buttons -- */
+
+
+/* -- Style for profile picture -- */
+.picker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrow {
+  font-size: 32px;
+  line-height: 1;
+  padding: 4px 12px;
+  margin: 0 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.arrow:hover {
+  background: #eee;
+}
+/* -- End profile picture -- */

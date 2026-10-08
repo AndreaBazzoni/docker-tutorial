@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+
+<html lang="it">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>User Profile</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+
+
+<body>
+  <div class="container">
+    <h1><u>User Profile</u></h1>
+    <div class="picker">
+      <img id="picture" src="/profile-1.jpeg" alt="Profile Picture" width="200" height="200">
+    </div>
+    <hr>
+    <div class="container-info">
+      ▶ Name: <h4 id="name">Andrea Bazzoni</h4>
+    </div>
+    <hr>
+    <div class="container-info">
+      ▶ Email: <h4 id="email">andrea.bazzoni@example.com</h4>
+    </div>
+    <hr>
+    <div class="container-info">
+      ▶ Interests: <h4 id="interests">Coding</h4>
+    </div>
+    <hr>
+    <button class="button" onclick="editProfile()">Edit Profile</button>
+  </div>
+
+  <div class="container-edit">
+    <h1><u>User Profile</u></h1>
+    <div class="picker">
+      <button type="button" class="arrow" onclick="changePicture(-1)">&#8249;</button>
+      <img id="edit-picture" src="/profile-1.jpeg" alt="Profile Picture" width="200" height="200">
+      <button type="button" class="arrow" onclick="changePicture(1)">&#8250;</button>
+    </div>
+    <hr>
+    <div class="container-edit-info">
+      ▶ Name: <input id="input-name" type="text">
+    </div>
+    <hr>
+    <div class="container-edit-info">
+      ▶ Email: <input id="input-email" type="text">
+    </div>
+    <hr>
+    <div class="container-edit-info">
+      ▶ Interests: <input id="input-interests" type="text">
+    </div>
+    <hr>
+    <button class="button" onclick="saveProfile()">Save Profile</button>
+  </div>
+
+
+  <script>
+    // Elenco delle immagini disponibili per il profilo
+    const pictures = ["/profile-1.jpeg", "/profile-2.jpeg", "/profile-3.jpeg", "/profile-4.jpeg"];
+    // Immagine mostrata nel profilo
+    let current = 0;
+    // Immagine scelta nella modifica
+    let selected = 0;
+
+    function changePicture(step) {
+      selected = (selected + step + pictures.length) % pictures.length;
+      document.querySelector("#edit-picture").src = pictures[selected];
+    }
+
+    function editProfile() {
+      // Hide the profile view and show the edit view
+      document.querySelector(".container").style.display = "none";
+      document.querySelector(".container-edit").style.display = "block";
+      // Populate the input fields with the current profile information
+      document.querySelector("#input-name").value = document.querySelector("#name").textContent;
+      document.querySelector("#input-email").value = document.querySelector("#email").textContent;
+      document.querySelector("#input-interests").value = document.querySelector("#interests").textContent;
+      // Set the selected picture to the current picture
+      selected = current;
+      document.querySelector("#edit-picture").src = pictures[selected];
+    }
+
+    function saveProfile() {
+      // Update the profile information with the values from the input fields
+      document.querySelector("#name").textContent = document.querySelector("#input-name").value;
+      document.querySelector("#email").textContent = document.querySelector("#input-email").value;
+      document.querySelector("#interests").textContent = document.querySelector("#input-interests").value;
+      // Hide the edit view and show the profile view
+      document.querySelector(".container").style.display = "block";
+      document.querySelector(".container-edit").style.display = "none";
+      // Update the current picture to the selected picture
+      current = selected;
+      document.querySelector("#picture").src = pictures[current];
+    }
+  </script>
+</body>
+
+
+</html>

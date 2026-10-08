@@ -10,7 +10,7 @@ const dbName = "user-account";
 const collectionName = "users";
 const imagesDir = path.join(__dirname, "public", "images");
 const allowedExtensions = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
-const numberOfUsers = 4;  // Number of users in the database
+const MAX_PROFILES = 4;  // Number of users in the database
 
 
 // Connection to files in the public folder.
@@ -21,8 +21,14 @@ app.use(express.static(path.join(__dirname, "public")));
 // Function to parse and validate the user ID.
 function parseUserId(value) {
   const id = Number(value);
-  return Number.isInteger(id) && id >= 1 && id <= numberOfUsers ? id : null;
+  return Number.isInteger(id) && id >= 1 && id <= MAX_PROFILES ? id : null;
 }
+
+
+// Maximum number of profiles allowed.
+app.get("/config", function (req, res) {
+  res.send({ maxProfiles: MAX_PROFILES });
+});
 
 
 // Get the profile.
@@ -85,3 +91,6 @@ app.post("/update-profile", async function (req, res) {
 app.listen(3000, function () {
   console.log("App listening on port 3000!");
 });
+
+
+// FAI FILE APPOSTA PER VARIABILI D'AMBIENTE (COME NUMERO PROFILI)!!!

@@ -7,6 +7,7 @@ let selected = 0;
 // Current user ID, default to 1. Updated when a different profile is selected from the dropdown.
 let currentUserId = 1;
 
+
 // Values shown when a profile does not exist in the database.
 const emptyProfile = { name: "-", email: "-", interests: "-", picture: null };
 
@@ -21,6 +22,20 @@ function showProfile(profile) {
   if (pictures.length > 0) {
     document.querySelector("#picture").src = pictures[current];
   }
+}
+
+
+// Create the dropdown options, one for each available profile.
+function buildProfileOptions(maxProfiles) {
+  const select = document.querySelector("#user-select");
+  select.innerHTML = "";
+  for (let i = 1; i <= maxProfiles; i++) {
+    const option = document.createElement("option");
+    option.value = i;
+    option.textContent = "Profile " + i;
+    select.appendChild(option);
+  }
+  select.value = currentUserId;
 }
 
 
@@ -44,6 +59,16 @@ async function loadProfile(userid) {
 
 // During loading: first the list of pictures, then profile 1.
 async function init() {
+  try {
+    // Number of profiles available, defined on the server.
+    const configResponse = await fetch("/config");
+    const config = await configResponse.json();
+    buildProfileOptions(config.maxProfiles);
+  }
+  catch (err) {
+    console.error("Could not load the configuration: ", err);
+  }
+
   try {
     const response = await fetch("/pictures");
     pictures = await response.json();
@@ -73,6 +98,7 @@ function changePicture(step) {
 }
 
 
+// Show the edit view for the current profile.
 function editProfile() {
   // Hide the profile view and show the edit view.
   document.querySelector(".container").style.display = "none";
@@ -81,6 +107,8 @@ function editProfile() {
   document.querySelector("#input-name").value = document.querySelector("#name").textContent;
   document.querySelector("#input-email").value = document.querySelector("#email").textContent;
   document.querySelector("#input-interests").value = document.querySelector("#interests").textContent;
+  // Show which profile is being edited, using the text of the selected option.
+  document.querySelector("#edit-user-select").textContent = document.querySelector("#user-select").selectedOptions[0].text;
   // Set the selected picture to the current picture.
   selected = current;
   if (pictures.length > 0) {
@@ -89,6 +117,7 @@ function editProfile() {
 }
 
 
+// Save the profile to the server.
 async function saveProfile() {
   const profile = {
     userid: currentUserId,
@@ -121,4 +150,5 @@ async function saveProfile() {
 
 
 // Load pictures and profile when the page is ready.
+// The init function is called at the end of this script to start the loading process.
 init();

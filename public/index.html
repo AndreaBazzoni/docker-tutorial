@@ -16,15 +16,11 @@
 <!-- Body section -->
 <body>
 
+  <!-- Profile view -->
   <div class="container">
     <div class="header-row">
       <h1><u>User Profile</u></h1>
-      <select id="user-select" onchange="changeUser()">
-        <option value="1">Profile 1</option>
-        <option value="2">Profile 2</option>
-        <option value="3">Profile 3</option>
-        <option value="4">Profile 4</option>
-      </select>
+      <select id="user-select" onchange="changeUser()"></select>
     </div>
     <div class="picker">
       <img id="picture" alt="Profile Picture" width="200" height="200">
@@ -45,8 +41,12 @@
     <button class="button" onclick="editProfile()">Edit Profile</button>
   </div>
 
+  <!-- Edit view -->
   <div class="container-edit">
-    <h1><u>User Profile <span id="edit-userid"></span></u></h1>
+    <div class="header-row">
+      <h1><u>User Profile</u></h1>
+      <span id="edit-user-select">Profile 1</span>
+    </div>
     <div class="picker">
       <button type="button" class="arrow" onclick="changePicture(-1)">&#8249;</button>
       <img id="edit-picture" alt="Profile Picture" width="200" height="200">

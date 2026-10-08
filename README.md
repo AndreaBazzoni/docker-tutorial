@@ -6,8 +6,8 @@ A small static profile page served by Node.js (Express), with MongoDB and mongo-
 
 ## Prerequisites
 
-- [Node.js] (https://nodejs.org) (LTS version)
-- [Docker] (https://www.docker.com)
+- [Node.js](https://nodejs.org) (LTS version)
+- [Docker](https://www.docker.com)
 
 
 
@@ -34,7 +34,7 @@ docker network create mongo-network
 If it already exists, Docker shows an error that can be ignored.
 
 
-### Start mongodb
+### Create and start mongodb
 
 ```bash
 docker run -d \
@@ -47,7 +47,7 @@ mongo
 ```
 
 
-### Start mongo-express
+### Create and start mongo-express
 
 ```bash
 docker run -d \
@@ -56,6 +56,20 @@ docker run -d \
 --net mongo-network \
 --name mongo-express \
 mongo-express
+```
+
+
+### Start mongodb e mongo-express
+
+```bash
+docker start mongodb mongo-express
+```
+
+
+### Stop mongo-express
+
+```bash
+docker stop mongodb mongo-express
 ```
 
 
@@ -87,3 +101,9 @@ Then open http://localhost:3000.
 docker rm -f mongo-express mongodb
 ```
 
+
+## Thanks to
+
+Thanks to [TechWorld with Nana](https://www.youtube.com/@techworldwithnana) for the Docker tutorial this project is based on.
+Check out her channel and her [website](https://www.techworld-with-nana.com/) for more DevOps and cloud content.
+The reference video is ["Docker tutorial for Beginners"](https://www.youtube.com/watch?v=3c-iBn73dDE&list=WL&index=1).

@@ -1,3 +1,4 @@
+/* Reset some default styles */
 * {
   box-sizing: border-box;
 }
@@ -117,3 +118,37 @@ input {
   background: #eee;
 }
 /* -- End profile picture -- */
+
+
+/* -- Style for profile header -- */
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.header-row h1 {
+  margin: 0;
+}
+
+select {
+  appearance: none;
+  padding: 4px 32px 4px 12px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #007bff;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  cursor: pointer;
+}
+
+select:focus-visible {
+  outline: 3px solid #99c9ff;
+  outline-offset: 2px;
+}
+/* -- End profile header -- */

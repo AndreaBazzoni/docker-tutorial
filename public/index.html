@@ -1,22 +1,33 @@
 <!DOCTYPE html>
 
-
 <html lang="it">
 
 
+// Header section
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>User Profile</title>
   <link rel="stylesheet" href="index.css">
+  <script src="index.js" defer></script>
 </head>
 
 
+// Body section
 <body>
+
   <div class="container">
-    <h1><u>User Profile</u></h1>
+    <div class="header-row">
+      <h1><u>User Profile</u></h1>
+      <select id="user-select" onchange="changeUser()">
+        <option value="1">Profile 1</option>
+        <option value="2">Profile 2</option>
+        <option value="3">Profile 3</option>
+        <option value="4">Profile 4</option>
+      </select>
+    </div>
     <div class="picker">
-      <img id="picture" src="/profile-1.jpeg" alt="Profile Picture" width="200" height="200">
+      <img id="picture" alt="Profile Picture" width="200" height="200">
     </div>
     <hr>
     <div class="container-info">
@@ -35,10 +46,10 @@
   </div>
 
   <div class="container-edit">
-    <h1><u>User Profile</u></h1>
+    <h1><u>User Profile <span id="edit-userid"></span></u></h1>
     <div class="picker">
       <button type="button" class="arrow" onclick="changePicture(-1)">&#8249;</button>
-      <img id="edit-picture" src="/profile-1.jpeg" alt="Profile Picture" width="200" height="200">
+      <img id="edit-picture" alt="Profile Picture" width="200" height="200">
       <button type="button" class="arrow" onclick="changePicture(1)">&#8250;</button>
     </div>
     <hr>
@@ -57,46 +68,6 @@
     <button class="button" onclick="saveProfile()">Save Profile</button>
   </div>
 
-
-  <script>
-    // Elenco delle immagini disponibili per il profilo
-    const pictures = ["/profile-1.jpeg", "/profile-2.jpeg", "/profile-3.jpeg", "/profile-4.jpeg"];
-    // Immagine mostrata nel profilo
-    let current = 0;
-    // Immagine scelta nella modifica
-    let selected = 0;
-
-    function changePicture(step) {
-      selected = (selected + step + pictures.length) % pictures.length;
-      document.querySelector("#edit-picture").src = pictures[selected];
-    }
-
-    function editProfile() {
-      // Hide the profile view and show the edit view
-      document.querySelector(".container").style.display = "none";
-      document.querySelector(".container-edit").style.display = "block";
-      // Populate the input fields with the current profile information
-      document.querySelector("#input-name").value = document.querySelector("#name").textContent;
-      document.querySelector("#input-email").value = document.querySelector("#email").textContent;
-      document.querySelector("#input-interests").value = document.querySelector("#interests").textContent;
-      // Set the selected picture to the current picture
-      selected = current;
-      document.querySelector("#edit-picture").src = pictures[selected];
-    }
-
-    function saveProfile() {
-      // Update the profile information with the values from the input fields
-      document.querySelector("#name").textContent = document.querySelector("#input-name").value;
-      document.querySelector("#email").textContent = document.querySelector("#input-email").value;
-      document.querySelector("#interests").textContent = document.querySelector("#input-interests").value;
-      // Hide the edit view and show the profile view
-      document.querySelector(".container").style.display = "block";
-      document.querySelector(".container-edit").style.display = "none";
-      // Update the current picture to the selected picture
-      current = selected;
-      document.querySelector("#picture").src = pictures[current];
-    }
-  </script>
 </body>
 
 

@@ -18,6 +18,7 @@ Create it by running, in the project folder:
 
 ```bash
 npm install
+npm install mongodb
 ```
 
 
@@ -41,10 +42,14 @@ docker run -d \
 -p 27017:27017 \
 -e MONGO_INITDB_ROOT_USERNAME=admin \
 -e MONGO_INITDB_ROOT_PASSWORD=password \
+-v mongo-data:/data/db \
+-v mongo-config:/data/configdb \
 --net mongo-network \
 --name mongodb \
 mongo
 ```
+
+MongoDB is the DataBase where we store the Data. It persists even if we delete the container.
 
 
 ### Create and start mongo-express
@@ -57,6 +62,8 @@ docker run -d \
 --name mongo-express \
 mongo-express
 ```
+
+Mongo Express is the web interface for viewing and editing Data in MongoDB. It is not required for the app and MongoDB to work.
 
 
 ### Start mongodb e mongo-express
@@ -95,10 +102,10 @@ Then open http://localhost:3000.
 
 
 
-## Stop and clean up
+## Stop and clean up (Containers AND Volumes)
 
 ```bash
-docker rm -f mongo-express mongodb
+docker rm -fv mongo-express mongodb
 ```
 
 

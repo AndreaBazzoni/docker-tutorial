@@ -5,7 +5,8 @@
   "main": "server.cjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.cjs"
+    "start": "node --env-file=.env server.cjs",
+    "dev": "node --env-file=.env --watch server.cjs"
   },
   "keywords": [],
   "author": "",

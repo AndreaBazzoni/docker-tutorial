@@ -3,14 +3,30 @@ const path = require("path");
 const fs = require("fs");
 const { MongoClient } = require("mongodb");
 
+
+// ENV Variables
+const PORT = Number(process.env.PORT) || 3000;
+const MAX_PROFILES = Number(process.env.MAX_PROFILES) || 4;
+const MONGO_USER = process.env.MONGO_USER;
+const MONGO_PASSWORD = process.env.MONGO_PASSWORD;
+const MONGO_HOST = process.env.MONGO_HOST || "localhost";
+const MONGO_PORT = process.env.MONGO_PORT || "27017";
+const DB_NAME = process.env.DB_NAME || "user-account";
+// Check for required environment variables
+if (!MONGO_USER || !MONGO_PASSWORD) {
+  console.error("Missing MONGO_USER or MONGO_PASSWORD in the .env file");
+  process.exit(1);
+}
+
+
 // Variables
 const app = express();
-const client = new MongoClient("mongodb://admin:password@localhost:27017");
-const dbName = "user-account";
+const url = `mongodb://${encodeURIComponent(MONGO_USER)}:${encodeURIComponent(MONGO_PASSWORD)}@${MONGO_HOST}:${MONGO_PORT}`;
+const client = new MongoClient(url, { serverSelectionTimeoutMS: 3000 });
+const dbName = DB_NAME;
 const collectionName = "users";
 const imagesDir = path.join(__dirname, "public", "images");
 const allowedExtensions = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
-const MAX_PROFILES = 4;  // Number of users in the database
 
 
 // Connection to files in the public folder.
@@ -88,9 +104,6 @@ app.post("/update-profile", async function (req, res) {
 
 
 // Start the server to listen on port 3000.
-app.listen(3000, function () {
-  console.log("App listening on port 3000!");
+app.listen(PORT, function () {
+  console.log(`App listening on port ${PORT}!`);
 });
-
-
-// FAI FILE APPOSTA PER VARIABILI D'AMBIENTE (COME NUMERO PROFILI)!!!

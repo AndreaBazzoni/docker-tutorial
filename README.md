@@ -66,6 +66,13 @@ mongo-express
 Mongo Express is the web interface for viewing and editing Data in MongoDB. It is not required for the app and MongoDB to work.
 
 
+### Create the .env file (copy from the example)
+
+```bash
+cp .env.example .env
+```
+
+
 ### Start mongodb e mongo-express
 
 ```bash
@@ -78,7 +85,6 @@ docker start mongodb mongo-express
 ```bash
 docker stop mongodb mongo-express
 ```
-
 
 
 ## Credentials
@@ -95,11 +101,19 @@ These are example values for local use only.
 ## Start the app
 
 ```bash
-node server.cjs
+npm start
 ```
 
 Then open http://localhost:3000.
 
+
+## Start the app with automatic reload
+
+```bash
+npm run dev
+```
+
+Then open http://localhost:3000.
 
 
 ## Stop and clean up (Containers AND Volumes)

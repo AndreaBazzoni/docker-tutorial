@@ -141,11 +141,26 @@ async function saveProfile() {
     // Hide the edit view and show the profile view.
     document.querySelector(".container").style.display = "block";
     document.querySelector(".container-edit").style.display = "none";
+    console.log("Profile save attempt completed!");
   }
+
   catch (err) {
     console.error("Could not save the profile: ", err);
     alert("Could not save the profile: " + err.message);
   }
+
+  finally {
+    console.log("Returning to profile view.");
+  }
+}
+
+
+// Cancel the edit and return to the profile view.
+async function cancelEdit() {
+  // Hide the edit view and show the profile view.
+  document.querySelector(".container").style.display = "block";
+  document.querySelector(".container-edit").style.display = "none";
+  console.log("Edit canceled. Returning to profile view.");
 }
 
 
